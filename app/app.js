@@ -12,4 +12,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
   $locationProvider.hashPrefix('!');
 
   $routeProvider.otherwise({redirectTo: '/'});
+}])
+.run(['$rootScope', '$route', function($rootScope, $route) {
+  $rootScope.$route = $route;
 }]);
