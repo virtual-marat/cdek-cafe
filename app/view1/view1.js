@@ -10,11 +10,13 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', function($scope) {
+.controller('View1Ctrl', ['$scope', 'Users', "$rootScope", function($scope, Users, $rootScope) {
 
   $scope.signIn = function(user, signInForm) {
     if (signInForm.$valid) {
-      return;
+      if (Users.saveUser(user)) {
+        $rootScope.currentUser = user;
+      }
     }
   };
 
