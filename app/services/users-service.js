@@ -2,14 +2,12 @@
 
 angular.module('myApp')
 
-.factory('Users', ['Share', function(Share) {
+.factory('Users', ['LocalStorage', function(LocalStorage) {
   return {
     saveUser: function(user) {
-      var users = (Share.getObjFromLS('dodocafe_users') || [])
-        .push(user);
-      window.localStorage.setItem('dodocafe_users',
-        JSON.stringify(users)
-      );
+      var users = LocalStorage.getJSON('dodocafe_users') || [];
+      users.push(user);
+      LocalStorage.setJSON('dodocafe_users', users);
       return true;
     }
   };
