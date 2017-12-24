@@ -10,7 +10,7 @@ angular.module('myApp.profile', ['ngRoute'])
   });
 }])
 
-.controller('ProfileCtrl', ['$scope', '$http', function($scope, $http) {
+.controller('ProfileCtrl', ['$scope', '$http', 'Dishes', 'Users', function($scope, $http, Dishes, Users) {
 
   $scope.upBalance = function(user, value) {
     user.balance += value;
@@ -30,6 +30,21 @@ angular.module('myApp.profile', ['ngRoute'])
 
   $scope.hideMenu = function() {
     $scope.isShowMenu = false;
+  };
+
+  $scope.addDish = function(dish, count, user, scope) {
+    scope.count = 1;
+    var _dish = angular.extend({}, dish, {
+      state: 'ordered',
+      count: count
+    });
+
+    user.balance -= _dish.price * count;
+    user.dishes = user.dishes || [];
+    user.dishes.push(_dish);
+
+    Users.updateUser(user.email, 'balance', user.balance);
+    Dishes.orderDish(_dish, user);
   };
 
 }]);

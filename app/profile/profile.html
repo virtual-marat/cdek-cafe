@@ -11,7 +11,7 @@
     <div class="col-lg-6">
         <div class="well">
             <h4>Ваш заказ:</h4>
-            <p ng-repeat="dish in currentUser.order.dishes">{{ dish.name }}</p>
+            <p ng-repeat="dish in currentUser.dishes">{{ dish.title }}</p>
             <button class="btn btn-success btn-block"
                     ng-click="showMenu()">Добавить блюдо
             </button>
@@ -35,10 +35,30 @@
             </div>
             <div class="media-body">
                 <h4 class="media-heading">{{ dish.title }}</h4>
+                <h5>Цена: {{ dish.price | currency }}</h5>
                 <p>Состав: {{ dish.ingredients.join(", ") }}</p>
-                <button class="btn btn-success pull-right"
-                        ng-click="addDish(dish, user)">Заказать +1
-                </button>
+                <div class="pull-right" style="width: 225px;">
+                    <div class="input-group">
+                        <span class="input-group-addon"
+                              ng-class="{ 'alert-danger': dish.price * count > currentUser.balance}">{{ dish.price * count | currency }}</span>
+                        <input class="form-control"
+                               type="number"
+                               min="1"
+                               ng-model="count"
+                               ng-init="count = 1">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success"
+                                    type="button"
+                                    ng-click="addDish(dish, count, currentUser, this)"
+                                    ng-disabled="dish.price * count > currentUser.balance">Заказать</button>
+                        </span>
+                    </div>
+                    <button class="btn btn-success btn-block"
+                            type="button"
+                            ng-click="upBalance(currentUser, -(currentUser.balance - dish.price * count))"
+                            ng-if="dish.price * count > currentUser.balance"
+                            style="margin-top: 10px;">Пополнить баланс на {{-(currentUser.balance - dish.price * count) | currency}}</button>
+                </div>
             </div>
             <hr style="border: 1px solid #e3e3e3;">
             <button class="btn btn-success btn-block"
