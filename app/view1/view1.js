@@ -10,14 +10,20 @@ angular.module('myApp.view1', ['ngRoute'])
   });
 }])
 
-.controller('View1Ctrl', ['$scope', 'Users', "$rootScope", function($scope, Users, $rootScope) {
+.controller('View1Ctrl', ['$scope', 'Users', "$rootScope", "$location", function($scope, Users, $rootScope, $location) {
 
   $scope.signIn = function(user, signInForm) {
     if (signInForm.$valid) {
+      angular.extend(user, { balance: 100 });
       if (Users.saveUser(user)) {
         $rootScope.currentUser = user;
+        $location.path('/profile');
       }
     }
+  };
+
+  $scope.go = function(path) {
+    $location.path(path);
   };
 
 }]);

@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="col-lg-6">
+        <div class="well">
+            <h4>{{ currentUser.name }}</h4>
+            <p>Баланс: {{ currentUser.balance | currency }}</p>
+            <button class="btn btn-success btn-block"
+                    ng-click="upBalance(currentUser, 100)">Пополнить баланс
+            </button>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="well">
+            <h4>Ваш заказ:</h4>
+            <p ng-repeat="dish in currentUser.order.dishes">{{ dish.name }}</p>
+            <button class="btn btn-success btn-block"
+                    ng-click="showMenu()">Добавить блюдо
+            </button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="well"
+         ng-if="isShowMenu">
+        <h4>Наше меню:</h4>
+        <div class="media"
+             ng-repeat="dish in menuDishes">
+            <div class="media-left">
+                <a href="#">
+                    <img class="media-object"
+                         ng-src="{{ dish.image }}"
+                         alt="{{ dish.title }}"
+                         style="width: 100px;">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{ dish.title }}</h4>
+                <p>Состав: {{ dish.ingredients.join(", ") }}</p>
+                <button class="btn btn-success pull-right"
+                        ng-click="addDish(dish, user)">Заказать +1
+                </button>
+            </div>
+            <hr style="border: 1px solid #e3e3e3;">
+            <button class="btn btn-success btn-block"
+                    ng-click="hideMenu()"
+                    ng-if="$last">Закрыть меню
+            </button>
+        </div>
+    </div>
+</div>
