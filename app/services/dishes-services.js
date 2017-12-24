@@ -14,6 +14,9 @@ angular.module('myApp')
       var dishes = this._getAllOrders();
       dishes.push(angular.extend({}, { dish: dish, user: user }));
       this._setAllOrders(dishes);
+    },
+    getOrders: function(){
+      return this._getAllOrders();
     }
   };
 }]);

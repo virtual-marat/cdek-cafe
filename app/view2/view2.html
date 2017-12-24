@@ -1,5 +1,30 @@
-<p>This is the partial for view 2.</p>
-<p>
-  Showing of 'interpolate' filter:
-  {{ 'Current version is v%VERSION%.' | interpolate }}
-</p>
+<div class="container">
+    <div class="col-lg-6">
+        <div class="well">
+            <h4>Заказанные блюда:</h4>
+            <ul class="list-group">
+              <li class="list-group-item"
+                  ng-repeat="order in orders | filter:{ dish: { state: 'ordered' } }">
+                <span>{{ order.dish.title }}</span>
+                <button class="btn btn-success"
+                        ng-click="order.dish.state = 'cooking'">Начать готовить
+                </button>
+              </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="well">
+            <h4>В процессе приготовления:</h4>
+            <ul class="list-group">
+              <li class="list-group-item"
+                  ng-repeat="order in orders | filter:{ dish: { state: 'cooking' } }">
+                {{ order.dish.title }}
+                <button class="btn btn-success"
+                        ng-click="order.dish.state = 'cooking'">Готово
+                </button>
+              </li>
+            </ul>
+        </div>
+    </div>
+</div>

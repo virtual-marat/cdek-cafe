@@ -10,6 +10,8 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', [function() {
+.controller('View2Ctrl', ['$scope', 'Dishes', function($scope, Dishes) {
+
+  $scope.orders = Dishes.getOrders();
 
 }]);

@@ -105,3 +105,8 @@ body {
     border-bottom: 0;
   }
 }
+
+/* Custom styles */
+hr {
+  border: 1px solid #e3e3e3;
+}
