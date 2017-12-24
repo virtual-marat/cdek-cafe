@@ -14,7 +14,6 @@ angular.module('myApp')
       var users = this._getAllUsers();
       users.push(user);
       this._setAllUsers(users);
-      return true;
     },
     updateUser: function(email, key, value) {
       var users = this._getAllUsers();

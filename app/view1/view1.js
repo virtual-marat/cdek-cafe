@@ -12,12 +12,18 @@ angular.module('myApp.view1', ['ngRoute'])
 
 .controller('View1Ctrl', ['$scope', 'Users', "$rootScope", "$location", function($scope, Users, $rootScope, $location) {
 
-  $scope.signIn = function(user, signInForm) {
-    if (signInForm.$valid) {
-      angular.extend(user, { balance: 100 });
-      if (Users.saveUser(user)) {
-        $rootScope.currentUser = user;
-        $location.path('/profile');
+  $scope.signAction = function(user, signForm, action) {
+    signForm.$setSubmitted();
+    if (signForm.$valid) {
+      switch(action) {
+        case 'signUp':
+          angular.extend(user, { balance: 100 });
+          Users.saveUser(user);
+          $rootScope.currentUser = user;
+          $location.path('/profile');
+          break;
+        case 'signIn':
+          break;
       }
     }
   };
