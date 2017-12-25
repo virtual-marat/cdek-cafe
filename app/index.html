@@ -34,7 +34,9 @@
             ng-class="{ active: $route.current.name === 'kitchen' }"><a href="/kitchen">А тут повара</a></li>
         </ul>
       </nav>
-      <h3 class="text-muted">Додокафе</h3>
+      <h3 class="text-muted">
+        <a href="/" style="color: inherit; text-decoration: none;">Додокафе</a>
+      </h3>
     </div>
 
     <div ng-view></div>
@@ -95,6 +97,6 @@
   <script src="components/version/interpolate-filter.js"></script>
   <script src="services/local-storage-service.js"></script>
   <script src="services/users-service.js"></script>
-  <script src="services/dishes-services.js"></script>
+  <script src="services/orders-services.js"></script>
 </body>
 </html>

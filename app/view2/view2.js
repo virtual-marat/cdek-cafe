@@ -10,8 +10,16 @@ angular.module('myApp.view2', ['ngRoute'])
   });
 }])
 
-.controller('View2Ctrl', ['$scope', 'Dishes', function($scope, Dishes) {
+.controller('View2Ctrl', ['$scope', 'Orders', function($scope, Orders) {
 
-  $scope.orders = Dishes.getOrders();
+  $scope.orders = Orders.getOrders();
+
+  $scope.setState = function(dish, state) {
+    dish.state = state;
+    if (state === 'ready') {
+      dish.cooked = new Date();
+    }
+    Orders.updateOrders($scope.orders);
+  };
 
 }]);

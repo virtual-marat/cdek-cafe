@@ -10,7 +10,7 @@ angular.module('myApp.profile', ['ngRoute'])
   });
 }])
 
-.controller('ProfileCtrl', ['$scope', '$http', 'Dishes', 'Users', function($scope, $http, Dishes, Users) {
+.controller('ProfileCtrl', ['$scope', '$http', 'Orders', 'Users', function($scope, $http, Orders, Users) {
 
   $scope.upBalance = function(user, value) {
     user.balance += value;
@@ -44,7 +44,7 @@ angular.module('myApp.profile', ['ngRoute'])
     user.dishes.push(_dish);
 
     Users.updateUser(user.email, 'balance', user.balance);
-    Dishes.orderDish(_dish, user);
+    Orders.addOrder(_dish, user);
   };
 
 }]);
