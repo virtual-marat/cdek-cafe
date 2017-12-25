@@ -6,7 +6,7 @@ angular.module('myApp.client', ['ngRoute'])
   $routeProvider.when('/client', {
     templateUrl: 'client/client.html',
     controller: 'ClientCtrl',
-    name: 'client'
+    menu: 'client'
   });
 }])
 
