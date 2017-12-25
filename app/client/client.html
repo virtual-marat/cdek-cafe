@@ -11,7 +11,7 @@
     <div class="col-lg-6">
         <div class="well">
             <h4>Ваш заказ:</h4>
-            <p ng-repeat="dish in currentUser.dishes">{{ dish.title }}</p>
+            <p ng-repeat="order in currentUser.orders">{{ order.dish.title }}</p>
             <button class="btn btn-success btn-block"
                     ng-click="showMenu()">Добавить блюдо
             </button>

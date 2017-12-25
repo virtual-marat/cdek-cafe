@@ -10,7 +10,11 @@ angular.module('myApp.client', ['ngRoute'])
   });
 }])
 
-.controller('ClientCtrl', ['$scope', '$http', 'Orders', 'Users', function($scope, $http, Orders, Users) {
+.controller('ClientCtrl', ['$scope', '$http', 'Orders', 'Users', '$rootScope', function($scope, $http, Orders, Users, $rootScope) {
+
+  $rootScope.currentUser.orders = Users.getOrders(
+    $rootScope.currentUser.email
+  );
 
   $scope.upBalance = function(user, value) {
     user.balance += value;
@@ -40,8 +44,8 @@ angular.module('myApp.client', ['ngRoute'])
     });
 
     user.balance -= _dish.price * count;
-    user.dishes = user.dishes || [];
-    user.dishes.push(_dish);
+    user.orders = user.orders || [];
+    user.orders.push({ dish: _dish });
 
     Users.updateUser(user.email, 'balance', user.balance);
     Orders.addOrder(_dish, user);

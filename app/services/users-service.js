@@ -2,7 +2,7 @@
 
 angular.module('myApp')
 
-.factory('Users', ['LocalStorage', function(LocalStorage) {
+.factory('Users', ['LocalStorage', 'Orders', function(LocalStorage, Orders) {
   return {
     _getAllUsers: function() {
       return LocalStorage.getJSON('dodocafe_users') || []
@@ -22,6 +22,11 @@ angular.module('myApp')
       });
       users[userIdx][key] = value;
       this._setAllUsers(users);
+    },
+    getOrders: function(email) {
+      return Orders._getAllOrders().filter(function(order){
+        return order.user.email === email;
+      });
     }
   };
 }]);
