@@ -17,7 +17,7 @@ angular.module('myApp.kitchen', ['ngRoute'])
   $scope.setState = function(dish, state) {
     dish.state = state;
     if (state === 'ready') {
-      dish.cooked = new Date();
+      dish.cooked = +new Date();
     }
     Orders.updateOrders($scope.orders);
   };

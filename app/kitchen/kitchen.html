@@ -23,7 +23,7 @@
                   ng-repeat="order in orders | filter:{ dish: { state: 'cooking' } }">
                 <span>{{ order.dish.title }}</span>
                 <button class="btn btn-success"
-                        ng-click="setState(order.dish, 'cooked')">Готово
+                        ng-click="setState(order.dish, 'ready')">Готово
                 </button>
               </li>
             </ul>

@@ -14,7 +14,7 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
   $routeProvider.otherwise({redirectTo: '/'});
 }])
-.run(['$rootScope', '$route', 'LocalStorage', '$location', function($rootScope, $route, LocalStorage, $location) {
+.run(['$rootScope', '$route', 'LocalStorage', '$location', '$timeout', 'Orders', function($rootScope, $route, LocalStorage, $location, $timeout, Orders) {
   $rootScope.$route = $route;
 
   var users = LocalStorage.getJSON('dodocafe_users');
@@ -22,5 +22,10 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
     $rootScope.currentUser = users[0];
     $location.path('/client');
   }
+
+  (function checkOrders() {
+    Orders.deferredRemoveOrder();
+    $timeout(checkOrders, 1000);
+  })();
 
 }]);
