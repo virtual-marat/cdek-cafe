@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('myApp.profile', ['ngRoute'])
+angular.module('myApp.client', ['ngRoute'])
 
 .config(['$routeProvider', function ($routeProvider) {
-  $routeProvider.when('/profile', {
-    templateUrl: 'profile/profile.html',
-    controller: 'ProfileCtrl',
+  $routeProvider.when('/client', {
+    templateUrl: 'client/client.html',
+    controller: 'ClientCtrl',
     name: 'client'
   });
 }])
 
-.controller('ProfileCtrl', ['$scope', '$http', 'Orders', 'Users', function($scope, $http, Orders, Users) {
+.controller('ClientCtrl', ['$scope', '$http', 'Orders', 'Users', function($scope, $http, Orders, Users) {
 
   $scope.upBalance = function(user, value) {
     user.balance += value;
