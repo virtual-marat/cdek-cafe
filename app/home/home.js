@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('myApp.view1', ['ngRoute'])
+angular.module('myApp.home', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl',
+    templateUrl: 'home/home.html',
+    controller: 'HomeCtrl',
     name: 'client'
   });
 }])
 
-.controller('View1Ctrl', ['$scope', 'Users', "$rootScope", "$location", function($scope, Users, $rootScope, $location) {
+.controller('HomeCtrl', ['$scope', 'Users', "$rootScope", "$location", function($scope, Users, $rootScope, $location) {
 
   $scope.signAction = function(user, signForm, action) {
     signForm.$setSubmitted();
