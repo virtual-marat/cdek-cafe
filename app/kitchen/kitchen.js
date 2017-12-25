@@ -1,16 +1,16 @@
 'use strict';
 
-angular.module('myApp.view2', ['ngRoute'])
+angular.module('myApp.kitchen', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/kitchen', {
-    templateUrl: 'view2/view2.html',
-    controller: 'View2Ctrl',
+    templateUrl: 'kitchen/kitchen.html',
+    controller: 'KitchenCtrl',
     name: 'kitchen'
   });
 }])
 
-.controller('View2Ctrl', ['$scope', 'Orders', function($scope, Orders) {
+.controller('KitchenCtrl', ['$scope', 'Orders', function($scope, Orders) {
 
   $scope.orders = Orders.getOrders();
 
