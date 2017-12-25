@@ -14,12 +14,13 @@ config(['$locationProvider', '$routeProvider', function($locationProvider, $rout
 
   $routeProvider.otherwise({redirectTo: '/'});
 }])
-.run(['$rootScope', '$route', 'LocalStorage', function($rootScope, $route, LocalStorage) {
+.run(['$rootScope', '$route', 'LocalStorage', '$location', function($rootScope, $route, LocalStorage, $location) {
   $rootScope.$route = $route;
 
   var users = LocalStorage.getJSON('dodocafe_users');
   if (users && users.length) {
     $rootScope.currentUser = users[0];
+    $location.path('/client');
   }
 
 }]);

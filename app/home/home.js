@@ -20,16 +20,12 @@ angular.module('myApp.home', ['ngRoute'])
           angular.extend(user, { balance: 100 });
           Users.saveUser(user);
           $rootScope.currentUser = user;
-          $location.path('/profile');
+          $location.path('/client');
           break;
         case 'signIn':
           break;
       }
     }
-  };
-
-  $scope.go = function(path) {
-    $location.path(path);
   };
 
 }]);
